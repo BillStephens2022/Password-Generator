@@ -14,16 +14,34 @@ function generatePassword() {
     numInvalid = Number.isNaN(numChar);
   };
   //user confirms whether or not password needs upper case, lower case, number, special character
-  var needUpper = confirm("\n\nDoes your password need an upper case letter?\n\nPress 'OK' for Yes, Press 'Cancel' for No");
-  var needLower = confirm("\n\nDoes your password need a lower case letter?\n\nPress 'OK' for Yes, Press 'Cancel' for No");
-  var needSpecChar = confirm("\n\nDoes your password need a special character?\n\nPress 'OK' for Yes, Press 'Cancel' for No");
-  var needNum = confirm("Does your password need a number?\n\nPress 'OK' for Yes, Press 'Cancel' for No");
+  var needUpper = false;
+  var needLower = false;
+  var needNum = false;
+  var needSpecChar = false;
+
+  needUpper = confirm("\n\nDoes your password need an upper case letter?\n\nPress 'OK' for Yes, Press 'Cancel' for No");
+  needLower = confirm("\n\nDoes your password need a lower case letter?\n\nPress 'OK' for Yes, Press 'Cancel' for No");
+  needNum = confirm("Does your password need a number?\n\nPress 'OK' for Yes, Press 'Cancel' for No");
+  needSpecChar = confirm("\n\nDoes your password need a special character?\n\nPress 'OK' for Yes, Press 'Cancel' for No");
+
+  //validation check to make sure user confirmed that at least one of the following character types is needed.
+  while (needUpper === false &&
+        needLower === false &&
+        needNum === false && 
+        needSpecChar === false) {
+          alert("Invalid responses. \n\nYour password must need at least one type of character \n\n(i.e. uppercase, lowercase, number, special character)");
+          needUpper = confirm("\n\nDoes your password need an upper case letter?\n\nPress 'OK' for Yes, Press 'Cancel' for No");
+          needLower = confirm("\n\nDoes your password need a lower case letter?\n\nPress 'OK' for Yes, Press 'Cancel' for No");
+          needNum = confirm("Does your password need a number?\n\nPress 'OK' for Yes, Press 'Cancel' for No");
+          needSpecChar = confirm("\n\nDoes your password need a special character?\n\nPress 'OK' for Yes, Press 'Cancel' for No");   
+  };
+  
   var passwordModel = {
     numChar: numChar,
     needUpper: needUpper,
     needLower: needLower,
-    needSpecChar: needSpecChar,
-    needNum: needNum 
+    needNum: needNum, 
+    needSpecChar: needSpecChar
   }
 
   console.log(passwordModel);
