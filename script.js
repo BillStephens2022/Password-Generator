@@ -25,15 +25,55 @@ function generatePassword() {
     needSpecChar: needSpecChar,
     needNum: needNum 
   }
-  var upperCaseArray = [ 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R', 'S','T','U','V','W','X','Y','Z'];
-  var lowerCaseArray = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-  var numArray = [0,1,2,3,4,5,6,7,8,9];
-  var specCharArray = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<',
-    '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'];
-  
+
   console.log(passwordModel);
-  
-  return "Hello"
+
+  var upperCaseString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var lowerCaseString = "abcdefghijklmnopqrstuvwxyz";
+  var numString = "0123456789";
+  var specCharString = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+  var completeCharString = upperCaseString + lowerCaseString + numString + specCharString;  
+  /* removed space from list of special characters at list from OWASP Foundation since 
+  spaces are sometimes not permitted. */
+
+  var charUsed = 0
+  var remainingChar = numChar - charUsed;
+
+  if (passwordModel.needUpper) {
+    char1 = upperCaseString[Math.floor((Math.random() * upperCaseString.length))];
+    charUsed++
+    remainingChar = numChar - charUsed;
+  };
+
+  if (passwordModel.needLower) {
+    char2 = lowerCaseString[Math.floor((Math.random() * lowerCaseString.length))];
+    charUsed++
+    remainingChar = numChar - charUsed;
+  };
+
+  if (passwordModel.needNum) {
+    char3 = numString[Math.floor((Math.random() * numString.length))];
+    charUsed++
+    remainingChar = numChar - charUsed;
+  };
+
+  if (passwordModel.needSpecChar) {
+    char4 = specCharString[Math.floor((Math.random() * specCharString.length))];
+    charUsed++
+    remainingChar = numChar - charUsed;
+  };
+
+  newPassword = char1 + char2 + char3 + char4;
+
+  for (let i = 0; i < remainingChar; i++) {
+    newChar = completeCharString[Math.floor((Math.random() * completeCharString.length))];
+    newPassword = newPassword + newChar;
+  };
+
+  console.log(newPassword);
+  console.log(newPassword.length);
+
+  return newPassword;
 }
 
 
