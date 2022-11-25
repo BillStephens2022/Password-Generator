@@ -6,6 +6,7 @@ This website contains a Password Generator.  The user will click button to Gener
 
 ## Screenshot
 
+![Screen Shot 2022-11-25 at 10 18 32 AM](https://user-images.githubusercontent.com/113722447/204019913-f421c847-4642-470e-b552-011f0c706334.png)
 
 
 ## Installation
